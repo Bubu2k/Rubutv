@@ -1,7 +1,7 @@
 
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Wew Hub premium",
-	Text = "đang tải",
+	Title = "WewHub premium",
+	Text = "Loading Ui....",
 	Icon = ""
 })
 
@@ -659,7 +659,7 @@ function t.CreateNoti(H)
             local W = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[2])
             local X = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[3])
             local g = V .. "," .. W .. "," .. X
-            Q.Text = '<font color="rgb(' .. g .. ')">WewHub premium</font> ' .. getgenv().TitleNameNoti
+            Q.Text = '<font color="rgb(' .. g .. ')">Chocolate Cake Hub</font> ' .. getgenv().TitleNameNoti
         end
     )
     Q.Name = "TextLabelNoti"
@@ -777,7 +777,7 @@ function t.CreateNoti(H)
     )
 end
 function t.CreateMain(H)
-    local Z = tostring(H.Title) or "wewhub premium"
+    local Z = tostring(H.Title) or "Chocolate Cake Hub"
     getgenv().MainDesc = H.Desc or ""
     local _ = false
     cac = false
@@ -913,7 +913,7 @@ function t.CreateMain(H)
                 local W = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[2])
                 local X = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[3])
                 local g = V .. "," .. W .. "," .. X
-                ad.Text = '<font color="rgb(' .. g .. ')">WewHub premium</font> ' .. getgenv().MainDesc
+                ad.Text = '<font color="rgb(' .. g .. ')">Chocolate Cake Hub</font> ' .. getgenv().MainDesc
             end
         )
         local as
@@ -974,7 +974,7 @@ function t.CreateMain(H)
     local W = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[2])
     local X = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[3])
     local g = V .. "," .. W .. "," .. X
-    ad.Text = '<font color="rgb(' .. g .. ')">Wewhub premium</font> ' .. getgenv().MainDesc
+    ad.Text = '<font color="rgb(' .. g .. ')">Chocolate Cake Hub</font> ' .. getgenv().MainDesc
     table.insert(
         c["Title Text Color"],
         function()
@@ -983,7 +983,7 @@ function t.CreateMain(H)
             local W = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[2])
             local X = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[3])
             local g = V .. "," .. W .. "," .. X
-            ad.Text = '<font color="rgb(' .. g .. ')">Wewhub premium</font> ' .. getgenv().MainDesc
+            ad.Text = '<font color="rgb(' .. g .. ')">Chocolate Cake Hub</font> ' .. getgenv().MainDesc
         end
     )
     local ar
@@ -1113,7 +1113,7 @@ function t.CreateMain(H)
     local W = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[2])
     local X = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[3])
     local g = V .. "," .. W .. "," .. X
-    ad.Text = '<font color="rgb(' .. g .. ')">Wewhub premium</font> ' .. getgenv().MainDesc
+    ad.Text = '<font color="rgb(' .. g .. ')">Chocolate Cake Hub</font> ' .. getgenv().MainDesc
     table.insert(
         c["Title Text Color"],
         function()
@@ -1121,7 +1121,7 @@ function t.CreateMain(H)
             local W = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[2])
             local X = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[3])
             local g = V .. "," .. W .. "," .. X
-            ad.Text = '<font color="rgb(' .. g .. ')">WewHub premium</font> ' .. getgenv().MainDesc
+            ad.Text = '<font color="rgb(' .. g .. ')">Chocolate Cake Hub</font> ' .. getgenv().MainDesc
         end
     )
     ak.Name = "SettionMain"
@@ -4734,12 +4734,12 @@ return t end
 local Library = GetUi()
 
 Library.CreateNoti({
-    Title = "WeW Premium",
+    Title = "WewHub Premium",
     Desc = "Loaded Gui Completed!",
     ShowTime = 5,
 })
 
-local Main = Library.CreateMain({Title = 'WewHub', Desc = ''})
+local Main = Library.CreateMain({Title = 'WewHub Premium', Desc = ''})
 
 --Place Id Check
 local id = game.PlaceId
