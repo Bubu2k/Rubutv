@@ -1,7 +1,7 @@
 
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "WEWHUB Premium",
-	Text = "Loading Ui....",
+	Title = "Wew Hub premium",
+	Text = "đang tải",
 	Icon = ""
 })
 
@@ -28,7 +28,7 @@ local oldcolor = {
     ["GUI Text Color"] = Color3.fromRGB(230, 230, 230),
     ["Text Color"] = Color3.fromRGB(255, 255, 255),
     ["Placeholder Text Color"] = Color3.fromRGB(178, 178, 178),
-    ["Title Text Color"] = Color3.fromRGB(0, 0, 0),
+    ["Title Text Color"] = fromRGB(209, 23, 23),
     ["Background 1 Color"] = Color3.fromRGB(43, 43, 43),
     ["Background 1 Transparency"] = 0,
     ["Background 2 Color"] = Color3.fromRGB(90, 90, 90),
@@ -64,7 +64,7 @@ local b = {
     ["Text Color"] = Color3.fromRGB(230, 230, 230),
     ["Placeholder Text Color"] = Color3.fromRGB(178, 178, 178),
     ["Title Text Color"] = Color3.fromRGB(255, 255, 255),
-    ["Background Main Color"] = Color3.fromRGB(0, 0, 0),
+    ["Background Main Color"] = fromRGB(209, 23, 23),
     ["Background 1 Color"] = Color3.fromRGB(43, 43, 43),
     ["Background 1 Transparency"] = 0,
     ["Background 2 Color"] = Color3.fromRGB(90, 90, 90),
@@ -659,7 +659,7 @@ function t.CreateNoti(H)
             local W = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[2])
             local X = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[3])
             local g = V .. "," .. W .. "," .. X
-            Q.Text = '<font color="rgb(' .. g .. ')">Chocolate Cake Hub</font> ' .. getgenv().TitleNameNoti
+            Q.Text = '<font color="rgb(' .. g .. ')">WewHub premium</font> ' .. getgenv().TitleNameNoti
         end
     )
     Q.Name = "TextLabelNoti"
@@ -708,7 +708,7 @@ function t.CreateNoti(H)
     T.Size = UDim2.new(1, 0, 1, 0)
     T.Font = Enum.Font.SourceSans
     T.Text = ""
-    T.TextColor3 = Color3.fromRGB(0, 0, 0)
+    T.TextColor3 = fromRGB(209, 23, 23)
     T.TextSize = 14.000
     if I then
         U.Name = "TextColor"
@@ -777,7 +777,7 @@ function t.CreateNoti(H)
     )
 end
 function t.CreateMain(H)
-    local Z = tostring(H.Title) or "Chocolate Cake Hub"
+    local Z = tostring(H.Title) or "wewhub premium"
     getgenv().MainDesc = H.Desc or ""
     local _ = false
     cac = false
@@ -913,7 +913,7 @@ function t.CreateMain(H)
                 local W = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[2])
                 local X = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[3])
                 local g = V .. "," .. W .. "," .. X
-                ad.Text = '<font color="rgb(' .. g .. ')">Chocolate Cake Hub</font> ' .. getgenv().MainDesc
+                ad.Text = '<font color="rgb(' .. g .. ')">WewHub premium</font> ' .. getgenv().MainDesc
             end
         )
         local as
@@ -974,7 +974,7 @@ function t.CreateMain(H)
     local W = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[2])
     local X = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[3])
     local g = V .. "," .. W .. "," .. X
-    ad.Text = '<font color="rgb(' .. g .. ')">Chocolate Cake Hub</font> ' .. getgenv().MainDesc
+    ad.Text = '<font color="rgb(' .. g .. ')">Wewhub premium</font> ' .. getgenv().MainDesc
     table.insert(
         c["Title Text Color"],
         function()
@@ -983,7 +983,7 @@ function t.CreateMain(H)
             local W = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[2])
             local X = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[3])
             local g = V .. "," .. W .. "," .. X
-            ad.Text = '<font color="rgb(' .. g .. ')">Chocolate Cake Hub</font> ' .. getgenv().MainDesc
+            ad.Text = '<font color="rgb(' .. g .. ')">Wewhub premium</font> ' .. getgenv().MainDesc
         end
     )
     local ar
@@ -1113,7 +1113,7 @@ function t.CreateMain(H)
     local W = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[2])
     local X = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[3])
     local g = V .. "," .. W .. "," .. X
-    ad.Text = '<font color="rgb(' .. g .. ')">Chocolate Cake Hub</font> ' .. getgenv().MainDesc
+    ad.Text = '<font color="rgb(' .. g .. ')">Wewhub premium</font> ' .. getgenv().MainDesc
     table.insert(
         c["Title Text Color"],
         function()
@@ -1121,7 +1121,7 @@ function t.CreateMain(H)
             local W = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[2])
             local X = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[3])
             local g = V .. "," .. W .. "," .. X
-            ad.Text = '<font color="rgb(' .. g .. ')">Chocolate Cake Hub</font> ' .. getgenv().MainDesc
+            ad.Text = '<font color="rgb(' .. g .. ')">WewHub premium</font> ' .. getgenv().MainDesc
         end
     )
     ak.Name = "SettionMain"
@@ -1139,7 +1139,7 @@ function t.CreateMain(H)
     al.Size = UDim2.new(1, 0, 1, 0)
     al.Font = Enum.Font.SourceSans
     al.Text = ""
-    al.TextColor3 = Color3.fromRGB(0, 0, 0)
+    al.TextColor3 = fromRGB(209, 23, 23)
     al.TextSize = 14.000
     al.Visible = true
     am.Name = "SettingIcon"
@@ -1346,7 +1346,7 @@ function t.CreateMain(H)
     aD.Size = UDim2.new(1, 0, 1, 0)
     aD.Font = Enum.Font.SourceSans
     aD.Text = ""
-    aD.TextColor3 = Color3.fromRGB(0, 0, 0)
+    aD.TextColor3 = fromRGB(209, 23, 23),
     aD.TextSize = 14.000
     aE.Name = "TextColorPlaceholder"
     aE.Parent = az
@@ -1649,7 +1649,7 @@ function t.CreateMain(H)
                 b7.Size = UDim2.new(1, 0, 1, 0)
                 b7.Font = Enum.Font.SourceSans
                 b7.Text = ""
-                b7.TextColor3 = Color3.fromRGB(0, 0, 0)
+                b7.TextColor3 = fromRGB(209, 23, 23)
                 b7.TextSize = 14.000
                 b8.Name = "Hue"
                 b8.Parent = b0
@@ -1882,7 +1882,7 @@ function t.CreateMain(H)
                 bt.Size = UDim2.new(1, 0, 1, 0)
                 bt.Font = Enum.Font.SourceSans
                 bt.Text = ""
-                bt.TextColor3 = Color3.fromRGB(0, 0, 0)
+                bt.TextColor3 = fromRGB(209, 23, 23)
                 bt.TextSize = 14.000
                 bu.Name = "Color"
                 bu.Parent = b0
@@ -1965,7 +1965,7 @@ function t.CreateMain(H)
                 bC.Size = UDim2.new(1, 0, 0, 25)
                 bC.Font = Enum.Font.SourceSans
                 bC.Text = ""
-                bC.TextColor3 = Color3.fromRGB(0, 0, 0)
+                bC.TextColor3 = fromRGB(209, 23, 23)
                 bC.TextSize = 14.000
                 bD.Parent = by
                 bD.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1990,7 +1990,7 @@ function t.CreateMain(H)
                 bH.Size = UDim2.new(1, 0, 1, 0)
                 bH.Font = Enum.Font.SourceSans
                 bH.Text = ""
-                bH.TextColor3 = Color3.fromRGB(0, 0, 0)
+                bH.TextColor3 = fromRGB(209, 23, 23)
                 bH.TextSize = 14.000
                 bI.Name = "Cor2"
                 bI.Parent = bD
@@ -4734,12 +4734,12 @@ return t end
 local Library = GetUi()
 
 Library.CreateNoti({
-    Title = "Chocolate Cake Hub",
+    Title = "WeW Premium",
     Desc = "Loaded Gui Completed!",
     ShowTime = 5,
 })
 
-local Main = Library.CreateMain({Title = 'Chocolate Cake Hub', Desc = ''})
+local Main = Library.CreateMain({Title = 'WewHub', Desc = ''})
 
 --Place Id Check
 local id = game.PlaceId
