@@ -1,0 +1,1 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Iamkhnah/Rubu-Script/refs/heads/main/Loader.lua"))()
