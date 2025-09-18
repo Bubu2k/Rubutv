@@ -1,0 +1,21 @@
+getgenv().Config = {
+    ["Speed"] = 1000,
+    ["Unlock Area"] = 10, -- Max 12
+    ["Method"] = "ServerHop", -- ServerHop / Stronghold
+    ["FPS Boost"] = false,
+    ["WhiteScreen"] = false,
+    ["Webhook"] = {
+        ["Url"] = "",
+        ["Mentions"] = "",
+    },
+    ["Blacklist"] = {
+        ["Bunny"] = true,
+        ["Alpha Wolf"] = true,
+        ["Bear"] = true,
+        ["Polar Bear"] = true,
+        ["Mammoth"] = true,
+        ["Juggernaut Cultist"] = true,
+        ["Arctic Fox"] = true
+    }
+}
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/101ddd5e78bf578e72a5e5b08d29abc3.lua"))()
