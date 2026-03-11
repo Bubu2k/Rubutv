@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>RuBu Roblox Script Hub</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#0f172a;
+color:white;
+}
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
+}
+
+header{
+background:#111827;
+padding:20px;
+text-align:center;
+font-size:28px;
+font-weight:bold;
+border-bottom:3px solid #22c55e;
+}
+
+.topbar{
+text-align:center;
+padding:15px;
+}
+
+input,select{
+padding:10px;
+margin:5px;
+border-radius:6px;
+border:none;
+}
+
+button{
+padding:10px 16px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+background:#22c55e;
+color:white;
+}
+
+button:hover{
+opacity:0.9;
+}
+
+#posts{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+padding:30px;
+max-width:1200px;
+margin:auto;
+}
+
+.card{
+background:#111827;
+border-radius:10px;
+overflow:hidden;
+transition:0.2s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card img{
+width:100%;
+height:160px;
+object-fit:cover;
+}
+
+.cardContent{
+padding:15px;
+}
+
+.star{
+color:gold;
+cursor:pointer;
+font-size:18px;
+}
+
+#pagination{
+text-align:center;
+margin-bottom:40px;
+}
+
+.page-btn{
+margin:4px;
+padding:8px 14px;
+}
+
+.footer{
+text-align:center;
+padding:20px;
+opacity:0.7;
+}
+
+#adminPanel{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#000000cc;
+justify-content:center;
+align-items:center;
+}
+
+.box{
+background:#111827;
+padding:20px;
+width:720px;
+max-height:90vh;
+overflow:auto;
+border-radius:10px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:10px;
+}
+
+th{
+background:#1f2937;
+padding:12px;
+}
+
+td{
+padding:10px;
+border-bottom:1px solid #333;
+}
+
+.edit-btn{
+background:#3b82f6;
+padding:6px 12px;
+}
+
+.delete-btn{
+background:#ef4444;
+padding:6px 12px;
+}
+
+.cat-btn{
+background:#ef4444;
+margin-left:10px;
+padding:4px 10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<canvas id="sakura"></canvas>
+
+<header>🌸 RuBu Roblox Script Hub</header>
+
+<div class="topbar">
+
+<input placeholder="Search script..." onkeyup="search(this.value)">
+
+<select id="filter" onchange="filterCat(this.value)"></select>
+
+<button onclick="openAdmin()">Admin</button>
+
+</div>
+
+<div id="posts"></div>
+
+<div id="pagination"></div>
+
+<div id="adminPanel">
+
+<div class="box">
+
+<button onclick="closeAdmin()">Close</button>
+
+<h3>Admin Login</h3>
+
+<input id="user" placeholder="username">
+<input id="pass" type="password">
+
+<button onclick="login()">Login</button>
+
+<div id="panel" style="display:none">
+
+<h3>Add / Edit Script</h3>
+
+<input id="title" placeholder="Title">
+<input id="url" placeholder="Script URL">
+
+<select id="category"></select>
+
+<input type="file" id="image">
+
+<button onclick="addPost()">Save Script</button>
+
+<h3>Add Category</h3>
+
+<input id="newCat">
+<button onclick="addCat()">Add</button>
+
+<div id="catList"></div>
+
+<h3>📊 Dashboard</h3>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Title</th>
+<th>Clicks</th>
+<th>Edit</th>
+<th>Delete</th>
+</tr>
+
+<tbody id="manage"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+© 2026 RuBuRoblox<br>
+All Rights Reserved
+</div>
+
+<script>
+
+let posts=JSON.parse(localStorage.getItem("posts"))||[]
+let categories=JSON.parse(localStorage.getItem("cats"))||["script","client"]
+
+let admin=false
+let current="all"
+let editIndex=-1
+
+let page=1
+let perPage=12
+
+function save(){
+localStorage.setItem("posts",JSON.stringify(posts))
+localStorage.setItem("cats",JSON.stringify(categories))
+}
+
+function render(){
+
+let filtered=current=="all"?posts:posts.filter(p=>p.category===current)
+
+let start=(page-1)*perPage
+let end=start+perPage
+
+let pagePosts=filtered.slice(start,end)
+
+let html=""
+
+pagePosts.forEach(p=>{
+
+let i=posts.indexOf(p)
+
+let rating=p.rateCount?(p.rate/p.rateCount).toFixed(1):"0"
+
+html+=`
+
+<div class="card">
+
+${p.image?`<img src="${p.image}">`:""}
+
+<div class="cardContent">
+
+<h3>${p.title}</h3>
+
+<p>⭐ ${rating}</p>
+<p>👁 ${p.clicks}</p>
+
+<div>
+
+<span class="star" onclick="rate(${i},1)">★</span>
+<span class="star" onclick="rate(${i},2)">★</span>
+<span class="star" onclick="rate(${i},3)">★</span>
+<span class="star" onclick="rate(${i},4)">★</span>
+<span class="star" onclick="rate(${i},5)">★</span>
+
+</div>
+
+<button onclick="openScript(${i})">OPEN</button>
+
+</div>
+
+</div>
+
+`
+
+})
+
+document.getElementById("posts").innerHTML=html
+
+renderPagination(filtered.length)
+renderManage()
+
+}
+
+function renderPagination(total){
+
+let pages=Math.ceil(total/perPage)
+
+let html=""
+
+for(let i=1;i<=pages;i++){
+
+html+=`<button class="page-btn" onclick="changePage(${i})">${i}</button>`
+
+}
+
+document.getElementById("pagination").innerHTML=html
+
+}
+
+function changePage(p){
+page=p
+render()
+}
+
+function openScript(i){
+
+posts[i].clicks++
+
+save()
+
+window.open(posts[i].url)
+
+render()
+
+}
+
+function rate(i,v){
+
+posts[i].rate=(posts[i].rate||0)+v
+posts[i].rateCount=(posts[i].rateCount||0)+1
+
+save()
+
+render()
+
+}
+
+function search(text){
+
+let html=""
+
+posts.forEach(p=>{
+
+if(!p.title.toLowerCase().includes(text.toLowerCase())) return
+
+html+=`<div class="card"><div class="cardContent"><h3>${p.title}</h3></div></div>`
+
+})
+
+document.getElementById("posts").innerHTML=html
+
+}
+
+function filterCat(cat){
+
+current=cat
+page=1
+
+render()
+
+}
+
+function openAdmin(){
+
+document.getElementById("adminPanel").style.display="flex"
+
+}
+
+function closeAdmin(){
+
+document.getElementById("adminPanel").style.display="none"
+
+}
+
+function login(){
+
+if(user.value==="admin"&&pass.value==="123456"){
+
+admin=true
+
+panel.style.display="block"
+
+renderCats()
+renderManage()
+
+}
+
+}
+
+function addPost(){
+
+let post={
+title:title.value,
+url:url.value,
+category:category.value,
+clicks:0,
+rate:0,
+rateCount:0
+}
+
+let file=image.files[0]
+
+if(file){
+
+let reader=new FileReader()
+
+reader.onload=function(){
+
+post.image=reader.result
+savePost(post)
+
+}
+
+reader.readAsDataURL(file)
+
+}else{
+
+savePost(post)
+
+}
+
+}
+
+function savePost(post){
+
+if(editIndex>-1){
+
+posts[editIndex]=post
+editIndex=-1
+
+}else{
+
+posts.push(post)
+
+}
+
+save()
+
+render()
+
+}
+
+function editPost(i){
+
+let p=posts[i]
+
+title.value=p.title
+url.value=p.url
+category.value=p.category
+
+editIndex=i
+
+}
+
+function deletePost(i){
+
+if(!confirm("Delete script?")) return
+
+posts.splice(i,1)
+
+save()
+
+render()
+
+}
+
+function addCat(){
+
+categories.push(newCat.value)
+
+save()
+
+renderCats()
+
+}
+
+function deleteCat(i){
+
+categories.splice(i,1)
+
+save()
+
+renderCats()
+
+}
+
+function renderCats(){
+
+let html=""
+let filter="<option value='all'>All</option>"
+
+categories.forEach((c,i)=>{
+
+html+=`${c} <button class="cat-btn" onclick="deleteCat(${i})">X</button><br>`
+
+filter+=`<option>${c}</option>`
+
+})
+
+category.innerHTML=categories.map(c=>`<option>${c}</option>`)
+
+document.getElementById("filter").innerHTML=filter
+
+catList.innerHTML=html
+
+}
+
+function renderManage(){
+
+if(!admin) return
+
+let html=""
+
+posts.forEach((p,i)=>{
+
+html+=`
+
+<tr>
+
+<td>${i}</td>
+<td>${p.title}</td>
+<td>${p.clicks}</td>
+
+<td><button class="edit-btn" onclick="editPost(${i})">Edit</button></td>
+
+<td><button class="delete-btn" onclick="deletePost(${i})">Delete</button></td>
+
+</tr>
+
+`
+
+})
+
+manage.innerHTML=html
+
+}
+
+render()
+renderCats()
+
+const canvas=document.getElementById("sakura")
+const ctx=canvas.getContext("2d")
+
+canvas.width=window.innerWidth
+canvas.height=window.innerHeight
+
+let petals=[]
+
+for(let i=0;i<60;i++){
+
+petals.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:Math.random()*6+3,
+speedY:Math.random()*1+0.5,
+speedX:Math.random()*0.5-0.25
+})
+
+}
+
+function draw(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height)
+
+ctx.fillStyle="pink"
+
+petals.forEach(p=>{
+
+ctx.beginPath()
+ctx.ellipse(p.x,p.y,p.size,p.size*0.6,Math.PI/4,0,Math.PI*2)
+ctx.fill()
+
+p.y+=p.speedY
+p.x+=p.speedX
+
+if(p.y>canvas.height){
+
+p.y=-10
+p.x=Math.random()*canvas.width
+
+}
+
+})
+
+requestAnimationFrame(draw)
+
+}
+
+draw()
+
+</script>
+
+</body>
+</html>
